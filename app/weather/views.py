@@ -2,12 +2,11 @@ from django.shortcuts import render
 from . import weather_api
 
 import logging
+from .logging_config import configure_logging
 
-logging.basicConfig(
-  level=logging.INFO,
-  format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-  filename='logs/weather_views.log',
-  )
+configure_logging()
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def weather_view(request):
