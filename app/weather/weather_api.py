@@ -45,7 +45,14 @@ def fetch():
     "region": weather.region,
     "temperature": weather.temperature,
     "ultraviolet": weather.ultraviolet,
-    "unit": weather.unit,
+    
+    "precipitation_unit" : weather.unit.precipitation,
+    "pressure_unit": weather.unit.pressure,
+    "temperature_unit": weather.unit.temperature,
+    "visibility_unit": weather.unit.visibility,
+    "velocity_unit" : weather.unit.velocity,
+    
+    
     "visibility": weather.visibility,
     "wind_direction": weather.wind_direction,
     "wind_speed": weather.wind_speed
@@ -61,4 +68,5 @@ if __name__ == '__main__':
 
   unit = python_weather.METRIC
   w = asyncio.run(getweather(city_name='Milan', unit=unit))
-  print(w)
+  
+  print(w.unit.pressure)

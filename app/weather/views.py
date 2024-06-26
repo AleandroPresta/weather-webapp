@@ -11,4 +11,6 @@ def weather_view(request):
     return render(
         request, 
         'weather/weather.html', 
-        forecast)
+        {
+            'forecast': forecast
+        })
