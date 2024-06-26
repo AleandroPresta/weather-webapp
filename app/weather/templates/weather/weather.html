@@ -18,16 +18,32 @@
                         <div class="col-10"></div>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <p>Kind: {{ forecast.kind }}{{ forecast.kind.emoji }}</p>
-                            <p>Humidity: {{ forecast.humidity }} %</p>
-                            <p>Pressure: {{ forecast.pressure }} {{ forecast.pressure_unit }}</p>
-                            <p>Precipitation: {{ forecast.precipitation }} {{ forecast.precipitation_unit }}</p>
+                        <div class="col m-2">
+                            <table class="table">
+                                <thead></thead>
+                                <tbody>
+                                    <tr class="row">
+                                        <th scope="row"></th>
+                                        <td><i class="fa-solid fa-user"></i> Weather: {{ forecast.kind }}{{ forecast.kind.emoji }}</td>
+                                        <td><i class="fa-solid fa-user"></i>Humidity: {{ forecast.humidity }} %</td>
+                                        <td><i class="fa-solid fa-user"></i>Pressure: {{ forecast.pressure }} {{ forecast.pressure_unit }}</td>
+                                        <td><i class="fa-solid fa-user"></i>Precipitation: {{ forecast.precipitation }} {{ forecast.precipitation_unit }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col">
-                            <p>Wind Direction: {{ forecast.wind_direction }}</p>
-                            <p>Wind Speed: {{ forecast.wind_speed }} {{ forecast.velocity_unit }}</p>
-                            <p>Visibility: {{ forecast.visibility }} {{forecast.visibility_unit }}</p>
+                        <div class="col m-2">
+                                <table class="table">
+                                    <thead></thead>
+                                    <tbody>
+                                        <tr class="row">
+                                            <td><i class="fa-solid fa-user"></i>Wind Direction: {{ forecast.wind_direction }}</td>
+                                            <td><i class="fa-solid fa-user"></i>Wind Speed: {{ forecast.wind_speed }} {{ forecast.velocity_unit }}</td>
+                                            <td><i class="fa-solid fa-user"></i>Visibility: {{ forecast.visibility }} {{forecast.visibility_unit }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </tr>  
                         </div>
                     </div>
                 </div>
