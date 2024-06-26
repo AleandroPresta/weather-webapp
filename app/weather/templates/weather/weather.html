@@ -1,8 +1,28 @@
-{% extends 'layout.html'%}
-{% block title%}
+{% extends 'layout.html' %}
+{% block title %}
     Weather
 {% endblock %}
 {% block content %}
     <h1>Weather</h1>
-    <p>{{weather}}</p>
+    <p>{{ weather }}</p>
+    <p>Coordinates: {{ coordinates }}</p>
+    <p>Country: {{ country }}</p>
+    <p>Daily Forecasts: {{ daily_forecasts }}</p>
+    <p>Date and Time: {{ datetime }}</p>
+    <p>Description: {{ description }}</p>
+    <p>Feels Like: {{ feels_like }}</p>
+    <p>Humidity: {{ humidity }}</p>
+    <p>Kind: {{ kind }}</p>
+    <p>Local Population: {{ local_population }}</p>
+    <p>Locale: {{ locale }}</p>
+    <p>Location: {{ location }}</p>
+    <p>Precipitation: {{ precipitation }}</p>
+    <p>Pressure: {{ pressure }}</p>
+    <p>Region: {{ region }}</p>
+    <p>Temperature: {{ temperature }}</p>
+    <p>Ultraviolet: {{ ultraviolet }}</p>
+    <p>Unit: {{ unit }}</p>
+    <p>Visibility: {{ visibility }}</p>
+    <p>Wind Direction: {{ wind_direction }}</p>
+    <p>Wind Speed: {{ wind_speed }}</p>
 {% endblock %}

@@ -23,13 +23,42 @@ async def getweather(city_name='New York', unit=python_weather.METRIC):
         
     return weather
 
+'''
+  Uses the weather api to return specific information about the weather
+'''
+def fetch():
+  weather = asyncio.run(getweather())
+  forecast = {
+    "coordinates": weather.coordinates,
+    "country": weather.country,
+    "daily_forecasts": weather.daily_forecasts,
+    "datetime": weather.datetime,
+    "description": weather.description,
+    "feels_like": weather.feels_like,
+    "humidity": weather.humidity,
+    "kind": weather.kind,
+    "local_population": weather.local_population,
+    "locale": weather.locale,
+    "location": weather.location,
+    "precipitation": weather.precipitation,
+    "pressure": weather.pressure,
+    "region": weather.region,
+    "temperature": weather.temperature,
+    "ultraviolet": weather.ultraviolet,
+    "unit": weather.unit,
+    "visibility": weather.visibility,
+    "wind_direction": weather.wind_direction,
+    "wind_speed": weather.wind_speed
+  }
+  
+  return forecast
+
 if __name__ == '__main__':
   # see https://stackoverflow.com/questions/45600579/asyncio-event-loop-is-closed-when-getting-loop
   # for more details
   if os.name == 'nt':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-  input_city = input("Enter the city name: ")
   unit = python_weather.METRIC
-  w = asyncio.run(getweather(city_name=input_city, unit=unit))
+  w = asyncio.run(getweather(city_name='Milan', unit=unit))
   print(w)
