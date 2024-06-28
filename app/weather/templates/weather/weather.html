@@ -3,71 +3,82 @@
     Weather
 {% endblock %}
 {% block content %}
-<div class="container center my-2">
-    <div class="row d-flex justify-content-center align-items-center">
+<div class="container center">
+    <div class="row d-flex justify-content-center align-items-center my-2">
         <div class="col-sm-fluid col-md-10 col-lg-8 col-xl-7">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Weather Today in {{ forecast.location }}, {{ forecast.region }}, {{ forecast.country }}</h5>
                     <div class="container card-text">
                         <div class="row">
-                                <p>Feels like</p>
-                                <h1>{{ forecast.feels_like }}˚ {{ forecast.temperature_unit }}</h1>
-                            </div>
+                            <p>Feels like</p>
+                            <h1>{{ forecast.feels_like }}˚ {{ forecast.temperature_unit }}</h1>
                         </div>
-                        <div class="row">
-                            <div class="col m-2">
-                                <table class="table">
-                                    <thead></thead>
-                                    <tbody>
-                                        <tr class="row">
-                                            <th scope="row"></th>
-                                            <td>{{ forecast.kind.emoji }} Weather: {{ forecast.kind }}</td>
-                                            <td><i class="fa-solid fa-droplet"></i> Humidity: {{ forecast.humidity }} %</td>
-                                            <td><i class="fa-solid fa-ruler"></i> Pressure: {{ forecast.pressure }} {{ forecast.pressure_unit }}</td>
-                                            <td><i class="fa-solid fa-umbrella"></i> Precipitation: {{ forecast.precipitation }} {{ forecast.precipitation_unit }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col m-2">
-                                    <table class="table">
-                                        <thead></thead>
-                                        <tbody>
-                                            <tr class="row">
-                                                <td><i class="fa-solid fa-location-arrow"></i> Wind Direction: {{ forecast.wind_direction }}</td>
-                                                <td><i class="fa-solid fa-wind"></i> Wind Speed: {{ forecast.wind_speed }} {{ forecast.velocity_unit }}</td>
-                                                <td><i class="fa-solid fa-eye"></i>  Visibility: {{ forecast.visibility }} {{forecast.visibility_unit }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </tr>  
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m-2">
+                            <table class="table">
+                                <thead></thead>
+                                <tbody>
+                                    <tr class="row">
+                                        <th scope="row"></th>
+                                        <td>{{ forecast.kind.emoji }} Weather: {{ forecast.kind }}</td>
+                                        <td><i class="fa-solid fa-droplet"></i> Humidity: {{ forecast.humidity }} %</td>
+                                        <td><i class="fa-solid fa-ruler"></i> Pressure: {{ forecast.pressure }} {{ forecast.pressure_unit }}</td>
+                                        <td><i class="fa-solid fa-umbrella"></i> Precipitation: {{ forecast.precipitation }} {{ forecast.precipitation_unit }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                        <div class="col m-2">
+                            <table class="table">
+                                <thead></thead>
+                                <tbody>
+                                    <tr class="row">
+                                        <td><i class="fa-solid fa-location-arrow"></i> Wind Direction: {{ forecast.wind_direction }}</td>
+                                        <td><i class="fa-solid fa-wind"></i> Wind Speed: {{ forecast.wind_speed }} {{ forecast.velocity_unit }}</td>
+                                        <td><i class="fa-solid fa-eye"></i> Visibility: {{ forecast.visibility }} {{ forecast.visibility_unit }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> <!-- Close second row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center mb-2">
+        <div class="col-sm-fluid col-md-10 col-lg-8 col-xl-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Daily Weather:</h5>
+                    <div class="container card-text">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="col">Date</th>
+                                    <th class="col">Lowest Temperature</th>
+                                    <th class="col">Highest Temperature</th>
+                                    <th class="col">Sunrise</th>
+                                    <th class="col">Sunset</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for daily_forecast in daily_forecasts %}
+                                    <tr>
+                                        <td>{{ daily_forecast.date }}</td>
+                                        <td>{{ daily_forecast.lowest_temperature }}˚ {{ daily_forecast.temperature_unit }}</td>
+                                        <td>{{ daily_forecast.highest_temperature }}˚ {{ daily_forecast.temperature_unit }}</td>
+                                        <td>{{ daily_forecast.sunrise }}</td>
+                                        <td>{{ daily_forecast.sunset }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="container center my-2">
-    <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-sm-fluid col-md-10 col-lg-8 col-xl-7">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Daily Weather:</h5>
-                    <div class="container card-text">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>    
 {% endblock %}
-    
-
-    
-    
-    
