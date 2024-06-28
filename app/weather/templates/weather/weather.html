@@ -80,5 +80,38 @@
             </div>
         </div>
     </div>
+    <div class="row d-flex justify-content-center align-items-center mb-2">
+        <div class="col-sm-fluid col-md-10 col-lg-8 col-xl-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Today's Weather:</h5>
+                    <div class="container card-text">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="col">Time</th>
+                                    <th class="col">Kind</th>
+                                    <th class="col">Temperature</th>
+                                    <th class="col">Chances of Rain</th>
+                                    <th class="col">Wind Speed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for hourly_forecast in today_hourly_forecasts %}
+                                    <tr>
+                                        <td>{{ hourly_forecast.time }}</td>
+                                        <td>{{ hourly_forecast.kind.emoji }}</td>
+                                        <td>{{ hourly_forecast.temperature }}° {{ hourly_forecast.temperature_unit}} </td>
+                                        <td>{{ hourly_forecast.chances_of_rain }}%</td>
+                                        <td>{{ hourly_forecast.wind_speed }} {{ hourly_forecast.velocity_unit }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

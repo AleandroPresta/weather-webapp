@@ -31,7 +31,6 @@ def fetch():
   forecast = {
     "coordinates": weather.coordinates,
     "country": weather.country,
-    "daily_forecasts": weather.daily_forecasts,
     "datetime": weather.datetime,
     "description": weather.description,
     "feels_like": weather.feels_like,
