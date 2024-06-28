@@ -55,7 +55,9 @@ def fetch():
     
     "visibility": weather.visibility,
     "wind_direction": weather.wind_direction,
-    "wind_speed": weather.wind_speed
+    "wind_speed": weather.wind_speed,
+    
+    "daily_forecasts": weather.daily_forecasts,
   }
   
   return forecast
