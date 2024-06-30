@@ -24,9 +24,10 @@ def weather_view(request) -> render:
             'today_hourly_forecasts': today_hourly_forecasts,
         })
     
-def search_weather_view(request, slug) -> render:
+def search_weather_view(request) -> render:
     logging.info('Calling search_weather_view')
-    if slugNotValid(slug):
+    location: str = request.GET.get('location')
+    if locationNotValid(location):
         return render(
             request, 
             'weather/search_weather.html', 
@@ -34,9 +35,9 @@ def search_weather_view(request, slug) -> render:
                 'success': False
                 })
     try:
-        forecast = weather_api.fetch(city_name=slug)
+        forecast = weather_api.fetch(city_name=location)
     except Exception as e:
-        logging.error(f'Error fetching weather for {slug}: {e}')
+        logging.error(f'Error fetching weather for {location}: {e}')
         return render(
             request, 
             'weather/search_weather.html', 
@@ -62,8 +63,8 @@ def search_weather_view(request, slug) -> render:
         })
     
 
-def slugNotValid(slug) -> bool:
-    return slug is None or len(slug) == 0
+def locationNotValid(location) -> bool:
+    return location is None or len(location) == 0
 
     
 '''
