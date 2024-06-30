@@ -5,7 +5,7 @@ from icecream import ic
 import logging
 
 # Create your views here.
-def weather_view(request):
+def weather_view(request) -> render:
     logging.info('Calling weather_view')
     forecast = weather_api.fetch()
     daily_forecasts = extract_daily_forecasts(forecast['daily_forecasts'])
@@ -24,11 +24,53 @@ def weather_view(request):
             'today_hourly_forecasts': today_hourly_forecasts,
         })
     
+def search_weather_view(request) -> render:
+    logging.info('Calling search_weather_view')
+    location: str = request.GET.get('location')
+    if locationNotValid(location):
+        return render(
+            request, 
+            'weather/search_weather.html', 
+            {
+                'success': False
+                })
+    try:
+        forecast = weather_api.fetch(city_name=location)
+    except Exception as e:
+        logging.error(f'Error fetching weather for {location}: {e}')
+        return render(
+            request, 
+            'weather/search_weather.html', 
+            {
+                'success': False
+                })
+        
+    daily_forecasts = extract_daily_forecasts(forecast['daily_forecasts'])
+    logging.debug(f'Daily Forecasts: {daily_forecasts}')
+    today_hourly_forecasts = extract_hourly_forecasts(daily_forecasts[0]['hourly_forecasts']) # daily_forecasts[0] is today's forecast
+    ic(daily_forecasts[0]['hourly_forecasts'])
+    ic(today_hourly_forecasts)
+    
+    logging.info('Redirecting to weather/search_weather.html')
+    return render(
+        request, 
+        'weather/search_weather.html',
+        {
+            'success': True,
+            'forecast': forecast,
+            'daily_forecasts': daily_forecasts,
+            'today_hourly_forecasts': today_hourly_forecasts,
+        })
+    
+
+def locationNotValid(location) -> bool:
+    return location is None or len(location) == 0
+
     
 '''
     Extracts the daily forecasts as list of dictionaries from the generator
 '''
-def extract_daily_forecasts(daily_forecasts):
+def extract_daily_forecasts(daily_forecasts) -> list:
     result = [
         {
             'date': daily_forecast.date.strftime('%d-%m'),
@@ -45,7 +87,7 @@ def extract_daily_forecasts(daily_forecasts):
     return result
 
 
-def extract_hourly_forecasts(hourly_forecasts):
+def extract_hourly_forecasts(hourly_forecasts) -> list:
     result = [
         {
             'kind': hourly_forecast.kind,
